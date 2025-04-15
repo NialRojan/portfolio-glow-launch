@@ -140,7 +140,7 @@ export function Portfolio() {
           {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className="animate-on-scroll portfolio-item rounded-xl shadow-lg overflow-hidden card-hover"
+              className="animate-on-scroll portfolio-item group rounded-xl shadow-lg overflow-hidden card-hover"
             >
               <div className="relative aspect-video">
                 <img 
