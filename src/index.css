@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -35,19 +37,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -95,7 +90,89 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  /* Section Headers */
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold pb-4 relative;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-24 h-1 bg-portfolio-purple rounded;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-portfolio-purple hover:bg-portfolio-purple-dark text-white font-semibold py-2 px-6 rounded-md transition-colors duration-300 inline-flex items-center gap-2;
+  }
+
+  .btn-outline {
+    @apply border-2 border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple hover:text-white font-semibold py-2 px-6 rounded-md transition-colors duration-300 inline-flex items-center gap-2;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .nav-link {
+    @apply relative py-2 px-3 text-black font-medium transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-portfolio-purple transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-white/20;
+  }
+
+  .portfolio-item {
+    @apply overflow-hidden rounded-lg relative group;
+  }
+
+  .portfolio-overlay {
+    @apply absolute inset-0 bg-portfolio-purple-dark/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100;
+  }
+
+  .social-icon {
+    @apply w-10 h-10 flex items-center justify-center rounded-full bg-white text-portfolio-purple hover:bg-portfolio-purple hover:text-white transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-hero-gradient;
   }
 }
